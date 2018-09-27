@@ -1,24 +1,32 @@
 import React from 'react';
-import { Input, Select } from 'antd';
+import { InputNumber, Select } from 'antd';
+import styles from './LoanTermSelection.module.css';
 
-const LoanTerm = props => (
-  <span>
-    <Input
-      type="number"
-      min={1}
-      value={Number.isNaN(props.value.number) ? '' : props.value.number}
-      onChange={e => props.onChange({ ...props.value, number: e.target.valueAsNumber })}
-      style={{ width: '65%', marginRight: '3%' }}
-    />
-    <Select
-      value={props.value.unit}
-      style={{ width: '32%' }}
-      onChange={unit => props.onChange({ ...props.value, unit })}
-    >
-      <Select.Option value="week">Weeks</Select.Option>
-      <Select.Option value="month">Months</Select.Option>
-    </Select>
-  </span>
-);
+// antd custom form control must be declared class
+/* eslint-disable react/prefer-stateless-function */
+class LoanTerm extends React.Component {
+  render() {
+    const { props } = this;
+    return (
+      <span className={styles.container}>
+        <InputNumber
+          type="number"
+          min={1}
+          value={props.value.number}
+          onChange={number => props.onChange({ ...props.value, number })}
+          className={styles.input}
+        />
+        <Select
+          className={styles.select}
+          value={props.value.unit}
+          onChange={unit => props.onChange({ ...props.value, unit })}
+        >
+          <Select.Option value="week">Weeks</Select.Option>
+          <Select.Option value="month">Months</Select.Option>
+        </Select>
+      </span>
+    );
+  }
+}
 
 export default LoanTerm;

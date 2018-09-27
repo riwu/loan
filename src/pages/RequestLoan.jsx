@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Input, Button } from 'antd';
+import { Form, InputNumber, Button } from 'antd';
 import LoanTermSelection from '../components/LoanTermSelection';
 import { requestLoan } from '../actions';
 import styles from './RequestLoan.module.css';
@@ -16,10 +16,18 @@ const RequestLoan = ({ form, ...props }) => (
       });
     }}
   >
-    <Form.Item label="Amount required">
+    <Form.Item label="Amount required ($)">
       {form.getFieldDecorator('amount', {
-        rules: [{ required: true, whitespace: true, message: 'Please input amount!' }],
-      })(<Input prefix="$" placeholder="Enter the amount" min={1} type="number" />)}
+        rules: [{ required: true, message: 'Please input amount!' }],
+      })(
+        <InputNumber
+          prefix="$"
+          placeholder="Enter the amount"
+          min={1}
+          type="number"
+          className={styles.input}
+        />,
+      )}
     </Form.Item>
     <Form.Item label="Loan term">
       {form.getFieldDecorator('duration', {
@@ -29,10 +37,10 @@ const RequestLoan = ({ form, ...props }) => (
             required: true,
             message: 'Please input the loan term!',
             validator: (_, value, callback) => {
-              if (Number.isNaN(value.number)) {
-                callback('Please input the loan term!');
-              } else {
+              if (typeof value.number === 'number') {
                 callback();
+              } else {
+                callback('Please input the loan term!');
               }
             },
           },

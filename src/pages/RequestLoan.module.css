@@ -1,3 +1,7 @@
 .container {
   padding: 5% 15%;
 }
+
+.input {
+  width: 100%;
+}
