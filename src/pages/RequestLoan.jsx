@@ -3,14 +3,16 @@ import { connect } from 'react-redux';
 import { Form, Input, Button } from 'antd';
 import LoanTermSelection from '../components/LoanTermSelection';
 import { requestLoan } from '../actions';
+import styles from './RequestLoan.module.css';
 
 const RequestLoan = ({ form, ...props }) => (
   <Form
+    className={styles.container}
     onSubmit={(e) => {
       e.preventDefault();
       form.validateFields((err, values) => {
         if (err) return;
-        props.requestLoan(values);
+        props.requestLoan(values).then(() => props.history.push('/loans'));
       });
     }}
   >

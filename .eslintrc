@@ -4,8 +4,10 @@
   "env": {
     "browser": true
   },
+  "parser": "babel-eslint",
   "rules": {
     "react/prop-types": 0,
-    "react/destructuring-assignment": 0
+    "react/destructuring-assignment": 0,
+    "no-console": 0
   }
 }

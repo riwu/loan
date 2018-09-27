@@ -7,6 +7,8 @@ module.exports = function override(config, env) {
     config
   );
 
-  config = rewireReactHotLoader(config, env);
+  if (env === 'development') {
+    config = rewireReactHotLoader(config, env);
+  }
   return config;
 };

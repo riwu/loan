@@ -8,7 +8,7 @@ const Navigation = () => (
     className={styles.container}
     theme="dark"
     mode="horizontal"
-    defaultSelectedKeys={[window.location.pathname]}
+    selectedKeys={[window.location.pathname]}
   >
     {[{ label: 'Request Loan', link: '/' }, { label: 'View Loans', link: '/loans' }].map(info => (
       <Menu.Item key={info.link}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import RequestLoan from '../pages/RequestLoan';
+import Loans from '../pages/Loans';
 import Navigation from './Navigation';
 
 const Routes = () => (
@@ -9,6 +10,7 @@ const Routes = () => (
       <Navigation />
       <Switch>
         <Route exact path="/" component={RequestLoan} />
+        <Route path="/loans" component={Loans} />
       </Switch>
     </>
   </BrowserRouter>
