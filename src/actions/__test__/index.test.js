@@ -8,7 +8,7 @@ const mockStore = configureMockStore(middlewares);
 
 test('requestLoan dispatches REQUEST_LOAN action', () => {
   const resolve = Promise.resolve.bind(Promise);
-  const response = { id: Date.now(), time: new Date().toISOString() };
+  const response = { id: 1, time: new Date().toISOString() };
   Promise.resolve = jest.fn(() => resolve(response));
   const payload = { amount: 100, duration: { number: 1, unit: 'month' } };
   const expectedActions = [
